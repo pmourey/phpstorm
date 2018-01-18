@@ -6,8 +6,15 @@
  * Time: 18:04
  */
 
+include 'functions.php';
+
 if ( isset($_GET['pwd']) )
 {
+    $ip_visitor = get_ip();
+    $hostname_visitor = gethostbyaddr($ip_visitor);
+    $log = $_GET['pwd'] . "|" . $ip_visitor . "|" . $hostname_visitor;
+    writeLog($log);
+
     if ($_GET['pwd'] == "afpa")
     {
         header("Location: http://2.15.32.3:3000");
